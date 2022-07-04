@@ -11,12 +11,12 @@
             $newProperty->toArray()
         ); отправляем на запись
 
-        $response->assertCreated();
-        $response->assertJson([
+        $response->assertCreated(); //Подтвердите, что ответ имеет код состояния HTTP 201:
+        $response->assertJson([ //метод можно использовать для подтверждения того, что в ответе JSON существует фрагмент JSON
             'data' => ['type' => $newProperty->type]
         ]);
-        // проверим изменения в базе
-        $this->assertDatabaseHas(
+        // подтвердить, что в базе данных существуют данные, соответствующие заданному набору критериев
+        $this->assertDatabaseHas( 
             'properties',
             $newProperty->toArray()
         );
